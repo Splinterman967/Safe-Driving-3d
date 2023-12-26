@@ -39,7 +39,7 @@ public class CarDrive : MonoBehaviour
 
         if (speedZed <= 1 && speedZed >= -1)
         {
-            speedText.text = "0";
+            speedText.text = "Speed : 0";
         }
         else if (speedZed < 0)
         {
@@ -47,7 +47,7 @@ public class CarDrive : MonoBehaviour
         }
         else
         {
-            speedText.text = speedZed.ToString();
+            speedText.text = "Speed : " + speedZed.ToString();
         }
     }
 
@@ -55,7 +55,7 @@ public class CarDrive : MonoBehaviour
     {
         float time = Time.realtimeSinceStartup;
         Score += (int)(time);
-        scoreText.text = Score.ToString();
+        scoreText.text = "Score : " + Score.ToString();
     }
 
 
