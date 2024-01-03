@@ -2,16 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CarSpawner : MonoBehaviour
+public class highwaySpawn : MonoBehaviour
 {
-
-    public GameObject car;
-    public Transform location;
+    public GameObject highway;
 
     void Start()
     {
-        GameObject carObject = Instantiate(car, location);
-
+        
     }
 
     // Update is called once per frame
@@ -19,4 +16,8 @@ public class CarSpawner : MonoBehaviour
     {
         
     }
+
+
+
+
 }
