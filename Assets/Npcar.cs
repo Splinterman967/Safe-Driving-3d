@@ -12,14 +12,32 @@ public class Npcar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Vector3 forceToAdd = transform.forward;
-        forceToAdd.y = 0;
-        rb.AddForce(forceToAdd * speed * 10);
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        Vector3 forceToAdd = transform.forward;
+        forceToAdd.y = 0;
+        rb.AddForce(forceToAdd * speed * 1);
+
+        Vector3 locVel = transform.InverseTransformDirection(rb.velocity);
+
+        locVel = new Vector3(0, locVel.y, locVel.z);
+
+        rb.velocity = new Vector3(transform.TransformDirection(locVel).x,
+            rb.velocity.y,
+            transform.TransformDirection(locVel).z);
+
+        Debug.Log(rb.velocity);
+
+
+        if (rb.velocity.z >= 60)
+        {
+            rb.velocity = new Vector3(transform.TransformDirection(locVel).x, rb.velocity.y,
+           50);
+        }
         
     }
 }
