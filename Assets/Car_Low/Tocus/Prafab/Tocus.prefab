@@ -1432,8 +1432,8 @@ GameObject:
   - component: {fileID: 4013073016293618}
   - component: {fileID: 95629998500851910}
   - component: {fileID: 1538177479}
-  - component: {fileID: 1538177477}
   - component: {fileID: 1538177478}
+  - component: {fileID: 432415834274750210}
   m_Layer: 0
   m_Name: Tocus
   m_TagString: Untagged
@@ -1522,19 +1522,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &1538177477
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1610265466720824}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.3845444, y: 1.4942012, z: 4.210602}
-  m_Center: {x: -0.013356686, y: 0.24710071, z: 0.09202576}
 --- !u!114 &1538177478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1559,6 +1546,19 @@ MonoBehaviour:
   speedText: {fileID: 0}
   scoreText: {fileID: 0}
   rb: {fileID: 1538177479}
+--- !u!65 &432415834274750210
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610265466720824}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.4128227, y: 1.3860393, z: 4.2662354}
+  m_Center: {x: 0.0036673546, y: 0.19301963, z: -0.057800293}
 --- !u!1 &1672185482629448
 GameObject:
   m_ObjectHideFlags: 0
