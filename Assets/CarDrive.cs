@@ -184,6 +184,7 @@ public class CarDrive : MonoBehaviour
         locVel = new Vector3(0, locVel.y, locVel.z);
         rb.velocity = new Vector3(transform.TransformDirection(locVel).x, rb.velocity.y, transform.TransformDirection(locVel).z);
 
+        Debug.Log(rb.velocity);
         //if (Input.GetKey(KeyCode.D))
         //{
         //    rb.AddTorque(Vector3.up * turnSpeed * 10);

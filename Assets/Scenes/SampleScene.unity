@@ -2155,7 +2155,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4013073016293618, guid: 02e641040fb499c49a848e40f535164a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.37
+      value: 3.4
       objectReference: {fileID: 0}
     - target: {fileID: 4013073016293618, guid: 02e641040fb499c49a848e40f535164a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3469,3 +3469,4 @@ MonoBehaviour:
   car: {fileID: 1610265466720824, guid: 2cd43425ca913954f866f5ecf9250ebc, type: 3}
   location: {fileID: 1923893302}
   location2: {fileID: 932678519}
+  speed: 5
