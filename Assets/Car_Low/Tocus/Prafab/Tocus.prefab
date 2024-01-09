@@ -1553,6 +1553,8 @@ MonoBehaviour:
   turnSpeed: 6
   gravityMultiplier: 2
   speedExeed: 0
+  isCrossed: 0
+  isSpeedLimited: 0
   speedLimit: {fileID: 0}
   scoreMinus: {fileID: 0}
   trafficSign: {fileID: 0}
