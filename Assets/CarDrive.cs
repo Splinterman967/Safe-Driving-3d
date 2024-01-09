@@ -13,6 +13,7 @@ public class CarDrive : MonoBehaviour
     public float gravityMultiplier;
     public bool speedExeed;
     public GameObject speedLimit;
+    public GameObject dontCross;
     public GameObject scoreMinus;
     public GameObject trafficSign;
     private int Limit;
@@ -133,20 +134,7 @@ public class CarDrive : MonoBehaviour
     void carMovement()
     {
 
-        //if (Input.GetKey(KeyCode.W))
-        //{
-        //    rb.AddRelativeForce(new Vector3(Vector3.forward.x,0,Vector3.forward.z) * speed * 10);
-        //}
-        //else if (Input.GetKey(KeyCode.S))
-        //{
-        //    rb.AddRelativeForce(new Vector3(Vector3.forward.x, 0, Vector3.forward.z) * -speed * 10);
-        //}
-
-
-        //Vector3 localVelocity = transform.InverseTransformDirection(rb.velocity);
-        //localVelocity.x = 0;
-        //rb.velocity = transform.TransformDirection(localVelocity);
-
+       
 
         if (Input.GetKey(KeyCode.W))
         {
@@ -194,5 +182,15 @@ public class CarDrive : MonoBehaviour
         //}
 
         rb.AddForce(Vector3.down * gravityMultiplier * 10);
+    }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.CompareTag("Npcar"))
+        {
+
+            dontCross.SetActive(true);
+           // dontCross.GetComponent<Animation>().Play();
+        }
     }
 }
