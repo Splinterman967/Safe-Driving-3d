@@ -79973,6 +79973,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5943694667524680890, guid: f245600be380b90448b0afc496db5f98, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5943694667524680890, guid: f245600be380b90448b0afc496db5f98, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 105
+      objectReference: {fileID: 0}
     - target: {fileID: 5943694668184246505, guid: f245600be380b90448b0afc496db5f98, type: 3}
       propertyPath: m_fontSize
       value: 50
