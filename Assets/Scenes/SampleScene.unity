@@ -57851,6 +57851,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1538177478, guid: 02e641040fb499c49a848e40f535164a, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1538177478, guid: 02e641040fb499c49a848e40f535164a, type: 3}
       propertyPath: scoreText
       value: 
       objectReference: {fileID: 92909439}
@@ -57876,15 +57880,15 @@ PrefabInstance:
       objectReference: {fileID: 729129860}
     - target: {fileID: 1538177479, guid: 02e641040fb499c49a848e40f535164a, type: 3}
       propertyPath: m_Drag
-      value: 1
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1538177479, guid: 02e641040fb499c49a848e40f535164a, type: 3}
       propertyPath: m_Mass
-      value: 0.8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1538177479, guid: 02e641040fb499c49a848e40f535164a, type: 3}
       propertyPath: m_AngularDrag
-      value: 1
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1610265466720824, guid: 02e641040fb499c49a848e40f535164a, type: 3}
       propertyPath: m_Name
@@ -61304,6 +61308,8 @@ MonoBehaviour:
   turnSpeed: 6
   gravityMultiplier: 2
   speedExeed: 0
+  isCrossed: 0
+  isSpeedLimited: 0
   speedLimit: {fileID: 1177781546}
   scoreMinus: {fileID: 1925568467}
   trafficSign: {fileID: 729129860}
