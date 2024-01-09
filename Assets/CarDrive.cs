@@ -7,15 +7,21 @@ using UnityEngine.UI;
 public class CarDrive : MonoBehaviour
 {
     public int Score;
+    private int Limit;
+
     public float speedZed;
     public float speed;
     public float turnSpeed;
     public float gravityMultiplier;
+
     public bool speedExeed;
+    public bool isCrossed;
+    public bool isSpeedLimited; 
+
     public GameObject speedLimit;
     public GameObject scoreMinus;
     public GameObject trafficSign;
-    private int Limit;
+
 
     public TextMeshProUGUI speedText;
     public TextMeshProUGUI scoreText;
@@ -26,8 +32,10 @@ public class CarDrive : MonoBehaviour
 
     void Start()
     {
-        Score = 100;
+        isCrossed = false;
+        isSpeedLimited = false;
         speedExeed = false;
+        Score = 100;
 
 
         StartCoroutine(checkSpeedLimit());
@@ -37,6 +45,7 @@ public class CarDrive : MonoBehaviour
         speedMeter();
         increaseScorByTime();
         checkTrafficSign();
+        speedLimiter();
 
     }
     void FixedUpdate()
@@ -67,6 +76,12 @@ public class CarDrive : MonoBehaviour
             speedExeed = false;
         }
 
+        if(trafficSign.GetComponent<Image>().sprite.name == "no overtaking" && isCrossed)
+        {
+            Score -= 10;
+            scoreMinus.SetActive(true);
+        }
+
     }
 
 
@@ -94,6 +109,7 @@ public class CarDrive : MonoBehaviour
                     scoreMinus.SetActive(false);
                 }
             }
+            
             yield return null;          
         }
 
@@ -128,31 +144,42 @@ public class CarDrive : MonoBehaviour
 
     
    
+    void speedLimiter()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            isSpeedLimited = true;
+            Debug.Log(isSpeedLimited+ "Basýldý ");
+        }
+        else if(Input.GetKeyDown(KeyCode.F))
+        {
+            isSpeedLimited = false;
+            
+        }
+        Debug.Log(isSpeedLimited );
+    }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Npcar"))
+        {
+            isCrossed = true;
+        }
+    }
 
     void carMovement()
     {
 
-        //if (Input.GetKey(KeyCode.W))
-        //{
-        //    rb.AddRelativeForce(new Vector3(Vector3.forward.x,0,Vector3.forward.z) * speed * 10);
-        //}
-        //else if (Input.GetKey(KeyCode.S))
-        //{
-        //    rb.AddRelativeForce(new Vector3(Vector3.forward.x, 0, Vector3.forward.z) * -speed * 10);
-        //}
-
-
-        //Vector3 localVelocity = transform.InverseTransformDirection(rb.velocity);
-        //localVelocity.x = 0;
-        //rb.velocity = transform.TransformDirection(localVelocity);
-
-
+        
         if (Input.GetKey(KeyCode.W))
         {
-            Vector3 forceToAdd = transform.forward;
-            forceToAdd.y = 0;
-            rb.AddForce(forceToAdd * speed * 10);
+            if (!isSpeedLimited)
+            {
+                Vector3 forceToAdd = transform.forward;
+                forceToAdd.y = 0;
+                rb.AddForce(forceToAdd * speed * 10);
+            }
+           
 
             if (Input.GetKey(KeyCode.D))
             {
@@ -165,9 +192,13 @@ public class CarDrive : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            Vector3 forceToAdd = -transform.forward;
-            forceToAdd.y = 0;
-            rb.AddForce(forceToAdd * speed * 10);
+
+            if (!isSpeedLimited)
+            {
+                Vector3 forceToAdd = -transform.forward;
+                forceToAdd.y = 0;
+                rb.AddForce(forceToAdd * speed * 10);
+            }
 
 
             if (Input.GetKey(KeyCode.D))
@@ -180,19 +211,23 @@ public class CarDrive : MonoBehaviour
             }
         }
 
-        Vector3 locVel = transform.InverseTransformDirection(rb.velocity);
-        locVel = new Vector3(0, locVel.y, locVel.z);
-        rb.velocity = new Vector3(transform.TransformDirection(locVel).x, rb.velocity.y, transform.TransformDirection(locVel).z);
 
-        Debug.Log(rb.velocity);
-        //if (Input.GetKey(KeyCode.D))
-        //{
-        //    rb.AddTorque(Vector3.up * turnSpeed * 10);
-        //}
-        //else if (Input.GetKey(KeyCode.A))
-        //{
-        //    rb.AddTorque(-Vector3.up * turnSpeed * 10);
-        //}
+            Vector3 locVel = transform.InverseTransformDirection(rb.velocity);
+            locVel = new Vector3(0, locVel.y, locVel.z);
+
+
+        if (!isSpeedLimited)
+        {
+           
+            rb.velocity = new Vector3(transform.TransformDirection(locVel).x, rb.velocity.y, transform.TransformDirection(locVel).z);
+
+        }
+        else
+        {
+           // rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z);
+        }
+
+       
 
         rb.AddForce(Vector3.down * gravityMultiplier * 10);
     }

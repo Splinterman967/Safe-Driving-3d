@@ -5,7 +5,7 @@ using UnityEngine;
 public class CarSpawner : MonoBehaviour
 {
 
-    public GameObject car;
+    public GameObject Npcar;
     public Transform location;
     public Transform location2;
     public float speed = 5;
@@ -23,16 +23,7 @@ public class CarSpawner : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(3);
-            GameObject carObject = Instantiate(car, location);
-
-            //carObject.GetComponent<Rigidbody>().velocity = new Vector3(0.20f, 0.02f, 50f);
-            //MoveObject(carObject.GetComponent<Rigidbody>());
-         
-
-
-           // GameObject carObject2 = Instantiate(car, location2);
-
-            //location.position = new Vector3(location.position.x, location.position.y, location.position.z + 100);
+            GameObject carObject = Instantiate(Npcar, location);
         }
       
     }
