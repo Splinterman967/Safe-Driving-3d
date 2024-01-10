@@ -25,16 +25,18 @@ public class Npcar : MonoBehaviour
         Vector3 locVel = transform.InverseTransformDirection(rb.velocity);
         locVel = new Vector3(0, locVel.y, locVel.z);
         rb.velocity = new Vector3(transform.TransformDirection(locVel).x, rb.velocity.y, transform.TransformDirection(locVel).z);
-
-
-  
-
+        
         rb.AddForce(Vector3.down * 2 * 10);
 
         if (rb.velocity.z >= 50)
         {
             rb.velocity = new Vector3(transform.TransformDirection(locVel).x, rb.velocity.y,
            50);
+        }
+        if (rb.velocity.z <= -70)
+        {
+            rb.velocity = new Vector3(transform.TransformDirection(locVel).x, rb.velocity.y,
+           -70);
         }
 
     }
