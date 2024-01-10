@@ -15,13 +15,11 @@ public class CarSpawner : MonoBehaviour
 
     void Start()
     {
-
         StartCoroutine(carSpawner());
     }
 
     IEnumerator carSpawner()
     {
-
         while (true)
         {
             yield return new WaitForSeconds(Random.Range(1, 3));
@@ -33,27 +31,5 @@ public class CarSpawner : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(1, 3));
             GameObject carObject4 = Instantiate(Npcars[Random.Range(0, 4)], location4);
         }
-        
-    }
-
-    //void changeColor()
-    //{
-    //    GameObject carObject = Instantiate(car, location);
-    //    int i = 0;
-    //    Color random = new Color(Random.Range(0, 150), Random.Range(0, 150), Random.Range(0, 150));
-    //    while (i < 8)
-    //    {
-    //        Debug.Log(carObject.transform.GetChild(i).gameObject.GetComponent<Renderer>().materials[0]);
-    //        carObject.transform.GetChild(i).gameObject.GetComponent<Renderer>().materials[0].color=random;
-            
-    //        i++;
-            
-    //    }
-    //}
-
-
-    void FixedUpdate()
-    {
-       
     }
 }
