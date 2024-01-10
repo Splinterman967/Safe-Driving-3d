@@ -11,7 +11,7 @@ public class TrafficSigns : MonoBehaviour
    
     void Start()
     {
-        trafficSign.GetComponent<Image>().sprite = trafficSigns[2];
+       
        
         i = 0;
         StartCoroutine(changeTrafficSign());
@@ -29,8 +29,8 @@ public class TrafficSigns : MonoBehaviour
         while (true)
         {
            
-            yield return new WaitForSeconds(10);
-            trafficSign.GetComponent<Image>().sprite = trafficSigns[i%=3];
+            trafficSign.GetComponent<Image>().sprite = trafficSigns[i%3];
+            yield return new WaitForSeconds(7);
             i++;
             
                 
