@@ -63,7 +63,7 @@ public class CarDrive : MonoBehaviour
     {
         speedLimit.GetComponent<TextMeshProUGUI>().SetText(alertText);
 
-        speedMeter();
+        
         increaseScorByTime();
         checkTrafficSign();
         checkCarLocation();
@@ -78,7 +78,7 @@ public class CarDrive : MonoBehaviour
     {
 
         carMovement();
-
+        speedMeter();
     }
 
    
