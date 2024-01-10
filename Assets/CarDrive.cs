@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
 public class CarDrive : MonoBehaviour
 {
@@ -22,13 +23,14 @@ public class CarDrive : MonoBehaviour
     public GameObject speedLimit;
     public GameObject scoreMinus;
     public GameObject trafficSign;
+    public GameObject minSpeedSign;
 
 
     public TextMeshProUGUI speedText;
     public TextMeshProUGUI scoreText;
 
     public Rigidbody rb;
-
+    private bool minSpeed;
 
 
     void Start()
@@ -37,18 +39,27 @@ public class CarDrive : MonoBehaviour
         isSpeedLimited = false;
         speedExeed = false;
         Score = 100;
+        minSpeed = true;
 
 
         StartCoroutine(checkSpeedLimit());
+        StartCoroutine(checkMinSpeed());
+        StartCoroutine(minSpeedSignTime());
     }
+
+    
     private void Update()
     {
         speedMeter();
         increaseScorByTime();
         checkTrafficSign();
         speedLimiter();
+        
 
     }
+
+    
+
     void FixedUpdate()
     {
 
@@ -59,13 +70,13 @@ public class CarDrive : MonoBehaviour
 
     void checkTrafficSign()
     {
-        if (trafficSign.GetComponent<Image>().sprite.name == "30 limit")
-        {
-            Limit = 30;
-        }
-        else if (trafficSign.GetComponent<Image>().sprite.name == "50 limit")
+        if (trafficSign.GetComponent<Image>().sprite.name == "50 limit")
         {
             Limit = 50;
+        }
+        else if (trafficSign.GetComponent<Image>().sprite.name == "70 limit")
+        {
+            Limit = 70;
         }
 
         if (speedZed > Limit)
@@ -76,13 +87,21 @@ public class CarDrive : MonoBehaviour
         {
             speedExeed = false;
         }
+        if (speedZed > 20)
+        {
+            minSpeed = false;
+        }
+        else
+        {
+            minSpeed = true;
+            
+        }
 
         if (trafficSign.GetComponent<Image>().sprite.name == "no overtaking" && isCrossed)
         {
             Score -= 10;
             scoreMinus.SetActive(true);
         }
-
     }
 
 
@@ -115,6 +134,46 @@ public class CarDrive : MonoBehaviour
         }
 
     }
+
+    IEnumerator checkMinSpeed()
+    {
+        while (true)
+        {
+            if (minSpeed)
+            {
+
+                yield return new WaitForSeconds(5);
+                if (minSpeed)
+                {
+                    Score -= 10;
+                    scoreMinus.SetActive(true);
+                    yield return new WaitForSeconds(1);
+                    scoreMinus.SetActive(false);
+                }
+                
+            }
+            yield return null;
+        }
+    }
+
+    IEnumerator minSpeedSignTime()
+    {
+        while (true)
+        {
+            if (minSpeed)
+            {
+                minSpeedSign.SetActive(true);
+                minSpeedSign.GetComponent<Animation>().Play();
+            }
+            else
+            {
+                minSpeedSign.SetActive(false);
+                minSpeedSign.GetComponent<Animation>().Stop();
+            }
+            yield return null;
+        }
+    }
+
     void speedMeter()
     {
 
