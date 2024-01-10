@@ -9,6 +9,7 @@ public class CarSpawner : MonoBehaviour
     public Transform location;
     public Transform location2;
     public float speed = 5;
+    
 
 
     void Start()
@@ -23,20 +24,27 @@ public class CarSpawner : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(3);
-            GameObject carObject = Instantiate(car, location);
-
-            //carObject.GetComponent<Rigidbody>().velocity = new Vector3(0.20f, 0.02f, 50f);
-            //MoveObject(carObject.GetComponent<Rigidbody>());
-
-
-
-            // GameObject carObject2 = Instantiate(car, location2);
-
-           // location.position = new Vector3(location.position.x, location.position.y, location.position.z + 100);
+            changeColor();
+            yield return new WaitForSeconds(2);
+            GameObject carObject2 = Instantiate(car, location2);
         }
-
+        
     }
 
+    void changeColor()
+    {
+        GameObject carObject = Instantiate(car, location);
+        int i = 0;
+        Color random = new Color(Random.Range(0, 150), Random.Range(0, 150), Random.Range(0, 150));
+        while (i < 8)
+        {
+            Debug.Log(carObject.transform.GetChild(i).gameObject.GetComponent<Renderer>().materials[0]);
+            carObject.transform.GetChild(i).gameObject.GetComponent<Renderer>().materials[0].color=random;
+            
+            i++;
+            
+        }
+    }
 
 
     void FixedUpdate()
