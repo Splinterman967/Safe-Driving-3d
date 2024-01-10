@@ -393,12 +393,15 @@ public class CarDrive : MonoBehaviour
 
     }
 
+    
+ 
 
 
 
 
 
-    IEnumerator checkIfCroessed()
+
+        IEnumerator checkIfCroessed()
     {
 
         while (true)
