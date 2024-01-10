@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8801079628177356506}
   - component: {fileID: 8801079628177356505}
-  - component: {fileID: 8801079627712247382}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -49,25 +48,3 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b2b87ce056e1a4c44b63f3eeb1712a8e, type: 3}
   - {fileID: 21300000, guid: 2dad94a8c1be5cb42837d52da1f02f1c, type: 3}
   trafficSign: {fileID: 0}
---- !u!114 &8801079627712247382
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8801079628177356504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e35f5ecfa3efa6e47bf759697e6fd163, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Npcars:
-  - {fileID: 1610265466720824, guid: 2cd43425ca913954f866f5ecf9250ebc, type: 3}
-  - {fileID: 1610265466720824, guid: 3eda6ab5e89c6f34f8d84c4c36732bd6, type: 3}
-  - {fileID: 1610265466720824, guid: 640d37e240904d546b44966a054dfde0, type: 3}
-  - {fileID: 1610265466720824, guid: a1e8c7ad87c29174ba6a12145d3288c7, type: 3}
-  location: {fileID: 0}
-  location2: {fileID: 0}
-  location3: {fileID: 0}
-  location4: {fileID: 0}
-  speed: 5
