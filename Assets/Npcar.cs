@@ -12,7 +12,7 @@ public class Npcar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        rb.constraints = RigidbodyConstraints.FreezePositionX| RigidbodyConstraints.FreezeRotation;
     }
 
     // Update is called once per frame
