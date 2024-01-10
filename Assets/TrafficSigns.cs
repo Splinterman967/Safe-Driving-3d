@@ -30,9 +30,7 @@ public class TrafficSigns : MonoBehaviour
         {
            
             yield return new WaitForSeconds(10);
-            
-            
-            trafficSign.GetComponent<Image>().sprite = trafficSigns[i%=2];
+            trafficSign.GetComponent<Image>().sprite = trafficSigns[i%=3];
             i++;
             
                 
