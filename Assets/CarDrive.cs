@@ -34,12 +34,13 @@ public class CarDrive : MonoBehaviour
 
     void Start()
     {
+        Limit = 100;
         isCrossed = false;
         isSpeedLimited = false;
         speedExeed = false;
         Score = 100;
 
-
+        StartCoroutine(checkIfCroessed());
         StartCoroutine(checkSpeedLimit());
     }
     private void Update()
@@ -78,11 +79,7 @@ public class CarDrive : MonoBehaviour
             speedExeed = false;
         }
 
-        if (trafficSign.GetComponent<Image>().sprite.name == "no overtaking" && isCrossed)
-        {
-            Score -= 10;
-            scoreMinus.SetActive(true);
-        }
+       
 
     }
 
@@ -240,23 +237,23 @@ public class CarDrive : MonoBehaviour
     {
 
 
-        if (trafficSign.GetComponent<Image>().sprite.name == "no Overtaking")
+        if (trafficSign.GetComponent<Image>().sprite.name == "no overtaking")
         {
             if (collision.CompareTag("Npcar"))
             {
 
-                dontCross.SetActive(true);
+                
                 isCrossed = true;
                 StartCoroutine(checkIfCroessed());
             }
 
-            if (!collision.CompareTag("Npcar"))
-            {
+            //if (!collision.CompareTag("Npcar"))
+            //{
 
-                dontCross.SetActive(true);
-                isCrossed = false;
-                StartCoroutine(checkIfCroessed());
-            }
+              
+            //    isCrossed = false;
+            //    StartCoroutine(checkIfCroessed());
+            //}
         }
       
     }
@@ -265,14 +262,14 @@ public class CarDrive : MonoBehaviour
     {
 
 
-        if (trafficSign.GetComponent<Image>().sprite.name == "no Overtaking")
+        if (trafficSign.GetComponent<Image>().sprite.name == "no overtaking")
         {
             if (collision.CompareTag("Npcar"))
             {
 
-                dontCross.SetActive(true);
-                isCrossed = true;
-                StartCoroutine(checkIfCroessed());
+                
+                isCrossed = false;
+                
             }
         }
 
@@ -288,24 +285,24 @@ public class CarDrive : MonoBehaviour
 
         while (true)
         {
-            if (speedExeed)
+            if (isCrossed)
             {
-                speedLimit.SetActive(true);
-                speedLimit.GetComponent<Animation>().Play();
 
+                dontCross.SetActive(true);
 
                 yield return new WaitForSeconds(2);
 
-                speedLimit.SetActive(false);
-                speedLimit.GetComponent<Animation>().Stop();
+                dontCross.SetActive(false);
+               
 
-                if (speedExeed)
+                if (isCrossed)
                 {
                     Score -= 10;
                     scoreMinus.SetActive(true);
                     yield return new WaitForSeconds(1);
                     scoreMinus.SetActive(false);
                 }
+                yield return null;
             }
             yield return null;
         }

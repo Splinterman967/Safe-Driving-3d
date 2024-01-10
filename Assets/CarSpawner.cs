@@ -24,27 +24,27 @@ public class CarSpawner : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(3);
-            changeColor();
+          
             yield return new WaitForSeconds(2);
             GameObject carObject2 = Instantiate(car, location2);
         }
         
     }
 
-    void changeColor()
-    {
-        GameObject carObject = Instantiate(car, location);
-        int i = 0;
-        Color random = new Color(Random.Range(0, 150), Random.Range(0, 150), Random.Range(0, 150));
-        while (i < 8)
-        {
-            Debug.Log(carObject.transform.GetChild(i).gameObject.GetComponent<Renderer>().materials[0]);
-            carObject.transform.GetChild(i).gameObject.GetComponent<Renderer>().materials[0].color=random;
+    //void changeColor()
+    //{
+    //    GameObject carObject = Instantiate(car, location);
+    //    int i = 0;
+    //    Color random = new Color(Random.Range(0, 150), Random.Range(0, 150), Random.Range(0, 150));
+    //    while (i < 8)
+    //    {
+    //        Debug.Log(carObject.transform.GetChild(i).gameObject.GetComponent<Renderer>().materials[0]);
+    //        carObject.transform.GetChild(i).gameObject.GetComponent<Renderer>().materials[0].color=random;
             
-            i++;
+    //        i++;
             
-        }
-    }
+    //    }
+    //}
 
 
     void FixedUpdate()

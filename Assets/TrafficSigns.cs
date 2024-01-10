@@ -11,8 +11,10 @@ public class TrafficSigns : MonoBehaviour
    
     void Start()
     {
+        trafficSign.GetComponent<Image>().sprite = trafficSigns[2];
+       
         i = 0;
-        StartCoroutine(changeTrafficSign());
+        //StartCoroutine(changeTrafficSign());
     }
 
     
