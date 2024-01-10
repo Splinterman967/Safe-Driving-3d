@@ -57856,6 +57856,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1538177478, guid: 02e641040fb499c49a848e40f535164a, type: 3}
+      propertyPath: speed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1538177478, guid: 02e641040fb499c49a848e40f535164a, type: 3}
       propertyPath: dontCross
       value: 
       objectReference: {fileID: 5943694667878272832}
@@ -61343,6 +61347,7 @@ MonoBehaviour:
   turnSpeed: 6
   gravityMultiplier: 2
   speedExeed: 0
+  isCrossed: 0
   speedLimit: {fileID: 1177781546}
   dontCross: {fileID: 0}
   scoreMinus: {fileID: 1925568467}

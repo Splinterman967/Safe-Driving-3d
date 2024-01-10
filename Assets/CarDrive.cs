@@ -11,7 +11,10 @@ public class CarDrive : MonoBehaviour
     public float speed;
     public float turnSpeed;
     public float gravityMultiplier;
+
     public bool speedExeed;
+    public bool isCrossed;
+
     public GameObject speedLimit;
     public GameObject dontCross;
     public GameObject scoreMinus;
@@ -186,11 +189,77 @@ public class CarDrive : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.CompareTag("Npcar"))
-        {
 
-            dontCross.SetActive(true);
-           // dontCross.GetComponent<Animation>().Play();
+
+        if (trafficSign.GetComponent<Image>().sprite.name == "no Overtaking")
+        {
+            if (collision.CompareTag("Npcar"))
+            {
+
+                dontCross.SetActive(true);
+                isCrossed = true;
+                StartCoroutine(checkIfCroessed());
+            }
+
+            if (!collision.CompareTag("Npcar"))
+            {
+
+                dontCross.SetActive(true);
+                isCrossed = false;
+                StartCoroutine(checkIfCroessed());
+            }
         }
+      
+    }
+
+    private void OnTriggerExit(Collider collision)
+    {
+
+
+        if (trafficSign.GetComponent<Image>().sprite.name == "no Overtaking")
+        {
+            if (collision.CompareTag("Npcar"))
+            {
+
+                dontCross.SetActive(true);
+                isCrossed = true;
+                StartCoroutine(checkIfCroessed());
+            }
+        }
+
+    }
+
+
+
+
+
+
+    IEnumerator checkIfCroessed()
+    {
+
+        while (true)
+        {
+            if (speedExeed)
+            {
+                speedLimit.SetActive(true);
+                speedLimit.GetComponent<Animation>().Play();
+
+
+                yield return new WaitForSeconds(2);
+
+                speedLimit.SetActive(false);
+                speedLimit.GetComponent<Animation>().Stop();
+
+                if (speedExeed)
+                {
+                    Score -= 10;
+                    scoreMinus.SetActive(true);
+                    yield return new WaitForSeconds(1);
+                    scoreMinus.SetActive(false);
+                }
+            }
+            yield return null;
+        }
+
     }
 }
