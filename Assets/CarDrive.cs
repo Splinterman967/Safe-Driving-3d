@@ -21,6 +21,7 @@ public class CarDrive : MonoBehaviour
     public bool isCrossed;
     public bool isSpeedLimited;
     public bool isKarsýSerit;
+    public bool isHitted;
 
 
     public GameObject speedLimit;
@@ -108,7 +109,6 @@ public class CarDrive : MonoBehaviour
         else
         {
             minSpeed = true;
-            
         }
 
 
@@ -136,6 +136,7 @@ public class CarDrive : MonoBehaviour
         {
             if (speedExeed)
             {
+                alertText = "Slow Down!";
                 speedLimit.SetActive(true);
                 speedLimit.GetComponent<Animation>().Play();
 
@@ -373,7 +374,13 @@ public class CarDrive : MonoBehaviour
             //    StartCoroutine(checkIfCroessed());
             //}
         }
-      
+
+        if (collision.CompareTag("hit"))
+        {
+            
+            alertText = "baba düzgün sür";
+            if()
+        }
     }
 
     private void OnTriggerExit(Collider collision)
