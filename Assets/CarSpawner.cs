@@ -10,7 +10,6 @@ public class CarSpawner : MonoBehaviour
     public Transform location2;
     public Transform location3;
     public Transform location4;
-    public float speed = 5;
     
 
 
