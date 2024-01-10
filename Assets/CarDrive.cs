@@ -379,7 +379,6 @@ public class CarDrive : MonoBehaviour
         {
             
             alertText = "baba düzgün sür";
-            if()
         }
     }
 
