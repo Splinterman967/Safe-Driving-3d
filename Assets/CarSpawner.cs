@@ -24,13 +24,13 @@ public class CarSpawner : MonoBehaviour
 
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(1, 4));
+            yield return new WaitForSeconds(Random.Range(1, 3));
             GameObject carObject =Instantiate(Npcars[Random.Range(0,4)],location);
-            yield return new WaitForSeconds(Random.Range(1, 4));
+            yield return new WaitForSeconds(Random.Range(1, 3));
             GameObject carObject2 = Instantiate(Npcars[Random.Range(0, 4)], location2);
-            yield return new WaitForSeconds(Random.Range(1, 4));
+            yield return new WaitForSeconds(Random.Range(1, 3));
             GameObject carObject3 = Instantiate(Npcars[Random.Range(0, 4)], location3);
-            yield return new WaitForSeconds(Random.Range(1, 4));
+            yield return new WaitForSeconds(Random.Range(1, 3));
             GameObject carObject4 = Instantiate(Npcars[Random.Range(0, 4)], location4);
         }
         
