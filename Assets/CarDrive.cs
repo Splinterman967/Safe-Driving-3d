@@ -26,6 +26,7 @@ public class CarDrive : MonoBehaviour
     public GameObject speedLimit;
     public GameObject dontCross;
     public GameObject scoreMinus;
+    public GameObject scorePlus;
     public GameObject trafficSign;
     public GameObject minSpeedSign;
 
@@ -90,6 +91,10 @@ public class CarDrive : MonoBehaviour
         {
             Limit = 70;
         }
+        else 
+        {
+            Limit = 100;
+        }
 
 
 
@@ -136,6 +141,7 @@ public class CarDrive : MonoBehaviour
         {
             if (speedExeed)
             {
+                alertText = "Slow Down!";
                 speedLimit.SetActive(true);
                 speedLimit.GetComponent<Animation>().Play();
 
@@ -145,6 +151,7 @@ public class CarDrive : MonoBehaviour
                 speedLimit.SetActive(false);
                 speedLimit.GetComponent<Animation>().Stop();
 
+                //2 sn boyunca speedi asmýssa
                 if (speedExeed)
                 {
                     Score -= 10;
@@ -152,6 +159,26 @@ public class CarDrive : MonoBehaviour
                     yield return new WaitForSeconds(1);
                     scoreMinus.SetActive(false);
                 }
+
+                //Speedi astýktan hemen sonra akýllanmýssa
+                else
+                {
+                    Score += 10;
+                    scorePlus.SetActive(true);
+                    yield return new WaitForSeconds(1);
+                    scorePlus.SetActive(false);
+
+                }
+            }
+
+            //Speedi hic asmamýssa
+            else
+            {
+                yield return new WaitForSeconds(7);
+                Score += 10;
+                scorePlus.SetActive(true);
+                yield return new WaitForSeconds(1);
+                scorePlus.SetActive(false);
             }
 
             yield return null;
@@ -174,7 +201,18 @@ public class CarDrive : MonoBehaviour
                     yield return new WaitForSeconds(1);
                     scoreMinus.SetActive(false);
                 }
-                
+
+
+                //else
+                //{
+                //    Score += 10;
+                //    scorePlus.SetActive(true);
+                //    yield return new WaitForSeconds(1);
+                //    scorePlus.SetActive(false);
+
+                //}
+
+
             }
             yield return null;
         }
@@ -209,7 +247,7 @@ public class CarDrive : MonoBehaviour
             {
                 
                 speedLimit.SetActive(true);
-                alertText = "Dont Cross Opposite Line";
+                alertText = "Dont Cross Opposite Line!";
                 speedLimit.GetComponent<Animation>().Play();
 
 
