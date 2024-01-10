@@ -9,6 +9,7 @@ public class CarDrive : MonoBehaviour
     public int Score;
     private int Limit;
     private string anne;
+    private string alertText;
 
     public float speedZed;
     public float speed;
@@ -18,6 +19,8 @@ public class CarDrive : MonoBehaviour
     public bool speedExeed;
     public bool isCrossed;
     public bool isSpeedLimited;
+    public bool isKarsýSerit;
+
 
     public GameObject speedLimit;
     public GameObject dontCross;
@@ -34,20 +37,27 @@ public class CarDrive : MonoBehaviour
 
     void Start()
     {
+       
         Limit = 100;
         isCrossed = false;
         isSpeedLimited = false;
         speedExeed = false;
         Score = 100;
 
+        string alertText = speedLimit.GetComponent<TextMeshProUGUI>().text.ToString();
+
         StartCoroutine(checkIfCroessed());
         StartCoroutine(checkSpeedLimit());
+        StartCoroutine(checkCarLocation());
     }
     private void Update()
     {
+        speedLimit.GetComponent<TextMeshProUGUI>().SetText(alertText);
+
         speedMeter();
         increaseScorByTime();
         checkTrafficSign();
+        checkCarLocation();
         speedLimiter();
 
     }
@@ -58,9 +68,13 @@ public class CarDrive : MonoBehaviour
 
     }
 
-
+   
     void checkTrafficSign()
     {
+
+       
+
+
         if (trafficSign.GetComponent<Image>().sprite.name == "30 limit")
         {
             Limit = 30;
@@ -69,6 +83,8 @@ public class CarDrive : MonoBehaviour
         {
             Limit = 50;
         }
+
+
 
         if (speedZed > Limit)
         {
@@ -79,7 +95,20 @@ public class CarDrive : MonoBehaviour
             speedExeed = false;
         }
 
-       
+
+
+        //Karsý serite gecýp gecmedýgýný kontrol edýyo
+        float carLocationX = gameObject.transform.position.x;
+
+        if (carLocationX < 0)
+        {
+            isKarsýSerit = true;
+        }
+        else
+        {
+            isKarsýSerit = false;
+        }
+
 
     }
 
@@ -101,6 +130,39 @@ public class CarDrive : MonoBehaviour
                 speedLimit.GetComponent<Animation>().Stop();
 
                 if (speedExeed)
+                {
+                    Score -= 10;
+                    scoreMinus.SetActive(true);
+                    yield return new WaitForSeconds(1);
+                    scoreMinus.SetActive(false);
+                }
+            }
+
+            yield return null;
+        }
+
+    }
+
+
+    IEnumerator checkCarLocation()
+    {
+
+        while (true)
+        {
+            if (isKarsýSerit)
+            {
+                
+                speedLimit.SetActive(true);
+                alertText = "Dont Cross Opposite Line";
+                speedLimit.GetComponent<Animation>().Play();
+
+
+                yield return new WaitForSeconds(2);
+
+                speedLimit.SetActive(false);
+                speedLimit.GetComponent<Animation>().Stop();
+
+                if (isKarsýSerit)
                 {
                     Score -= 10;
                     scoreMinus.SetActive(true);
