@@ -414,8 +414,8 @@ public class CarDrive : MonoBehaviour
 
         if (collision.CompareTag("hit"))
         {
-            
-            alertText = "baba düzgün sür";
+
+            isHitted = true;
         }
     }
 
@@ -436,7 +436,25 @@ public class CarDrive : MonoBehaviour
 
     }
 
-    
+    IEnumerator checkIfHitted()
+    {
+        while(true)
+        {
+            if (isHitted)
+            {
+                alertText = "baba düzgün sür";
+                speedLimit.SetActive(true);
+                speedLimit.GetComponent<Animation>().Play();
+
+
+                yield return new WaitForSeconds(2);
+
+                speedLimit.SetActive(false);
+                speedLimit.GetComponent<Animation>().Stop();
+            }
+            yield return null;
+        }   
+    }
  
 
 
