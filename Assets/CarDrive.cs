@@ -56,6 +56,7 @@ public class CarDrive : MonoBehaviour
         StartCoroutine(checkCarLocation());
         StartCoroutine(checkMinSpeed());
         StartCoroutine(minSpeedSignTime());
+        StartCoroutine(checkIfHitted());
     }
 
     
@@ -433,6 +434,11 @@ public class CarDrive : MonoBehaviour
                 
             }
         }
+        if (collision.CompareTag("hit"))
+        {
+
+            isHitted = false;
+        }
 
     }
 
@@ -443,6 +449,7 @@ public class CarDrive : MonoBehaviour
             if (isHitted)
             {
                 alertText = "baba düzgün sür";
+                Score -= 10;
                 speedLimit.SetActive(true);
                 speedLimit.GetComponent<Animation>().Play();
 
