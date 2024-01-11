@@ -419,7 +419,6 @@ public class CarDrive : MonoBehaviour
             if (collision.CompareTag("Npcar"))
             {
 
-                
                 isCrossed = true;
                 StartCoroutine(checkIfCroessed());
             }
