@@ -30,6 +30,7 @@ public class CarDrive : MonoBehaviour
     public GameObject scorePlus;
     public GameObject trafficSign;
     public GameObject minSpeedSign;
+    public GameObject Instructions;
 
 
     public TextMeshProUGUI speedText;
@@ -198,6 +199,7 @@ public class CarDrive : MonoBehaviour
         if (!speedExeed)
         {
             yield return new WaitForSeconds(9);
+            Instructions.SetActive(false);
             Score += 5;
             scorePlus.SetActive(true);
             yield return new WaitForSeconds(1);
