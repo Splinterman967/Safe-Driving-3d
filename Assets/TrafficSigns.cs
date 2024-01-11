@@ -13,7 +13,7 @@ public class TrafficSigns : MonoBehaviour
     {
        
        
-        i = 0;
+        i = 1;
         StartCoroutine(changeTrafficSign());
     }
 
@@ -29,8 +29,8 @@ public class TrafficSigns : MonoBehaviour
         while (true)
         {
            
-            trafficSign.GetComponent<Image>().sprite = trafficSigns[i%3];
             yield return new WaitForSeconds(7);
+            trafficSign.GetComponent<Image>().sprite = trafficSigns[i%3];
             i++;
             
                 

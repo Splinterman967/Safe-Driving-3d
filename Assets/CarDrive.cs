@@ -50,9 +50,10 @@ public class CarDrive : MonoBehaviour
         minSpeed = true;
 
         string alertText = speedLimit.GetComponent<TextMeshProUGUI>().text.ToString();
-
-        StartCoroutine(checkIfCroessed());
+        checkTrafficSign();
         StartCoroutine(checkSpeedLimit());
+        StartCoroutine(checkRuleObey());
+        StartCoroutine(checkIfCroessed());
         StartCoroutine(checkCarLocation());
         StartCoroutine(checkMinSpeed());
         StartCoroutine(minSpeedSignTime());
@@ -103,6 +104,7 @@ public class CarDrive : MonoBehaviour
         if (speedZed > Limit)
         {
             speedExeed = true;
+            
         }
         else
         {
@@ -137,15 +139,14 @@ public class CarDrive : MonoBehaviour
 
     IEnumerator checkSpeedLimit()
     {
-
         while (true)
         {
             if (speedExeed)
             {
+                Debug.Log("true");
                 alertText = "Slow Down!";
                 speedLimit.SetActive(true);
                 speedLimit.GetComponent<Animation>().Play();
-
 
                 yield return new WaitForSeconds(2);
 
@@ -159,12 +160,9 @@ public class CarDrive : MonoBehaviour
                     scoreMinus.SetActive(true);
                     yield return new WaitForSeconds(1);
                     scoreMinus.SetActive(false);
-                }
-
+                }else{
                 //Speedi astýktan hemen sonra akýllanmýssa
-                else
-                {
-                    Score += 10;
+                    Score += 5;
                     scorePlus.SetActive(true);
                     yield return new WaitForSeconds(1);
                     scorePlus.SetActive(false);
@@ -172,19 +170,27 @@ public class CarDrive : MonoBehaviour
                 }
             }
 
-            //Speedi hic asmamýssa
-            else
-            {
-                yield return new WaitForSeconds(7);
-                Score += 10;
-                scorePlus.SetActive(true);
-                yield return new WaitForSeconds(1);
-                scorePlus.SetActive(false);
-            }
-
             yield return null;
         }
 
+    }
+
+    IEnumerator checkRuleObey()
+    {
+        while (true)
+        {
+
+            //Speedi hic asmamýssa
+        if (!speedExeed)
+        {
+            yield return new WaitForSeconds(6);
+            Score += 5;
+            scorePlus.SetActive(true);
+            yield return new WaitForSeconds(1);
+            scorePlus.SetActive(false);
+        }
+            yield return null;
+        }
     }
 
     IEnumerator checkMinSpeed()
