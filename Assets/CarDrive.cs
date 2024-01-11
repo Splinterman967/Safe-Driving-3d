@@ -83,7 +83,22 @@ public class CarDrive : MonoBehaviour
         speedMeter();
     }
 
-   
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("hit"))
+        {
+
+            isHitted = true;
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.collider.CompareTag("hit"))
+        {
+
+            isHitted = false;
+        }
+    }
     void checkTrafficSign()
     {
         if (trafficSign.GetComponent<Image>().sprite.name == "50 limit")
@@ -143,7 +158,6 @@ public class CarDrive : MonoBehaviour
         {
             if (speedExeed)
             {
-                Debug.Log("true");
                 alertText = "Slow Down!";
                 speedLimit.SetActive(true);
                 speedLimit.GetComponent<Animation>().Play();
@@ -183,7 +197,7 @@ public class CarDrive : MonoBehaviour
             //Speedi hic asmamýssa
         if (!speedExeed)
         {
-            yield return new WaitForSeconds(6);
+            yield return new WaitForSeconds(9);
             Score += 5;
             scorePlus.SetActive(true);
             yield return new WaitForSeconds(1);
@@ -419,11 +433,11 @@ public class CarDrive : MonoBehaviour
             //}
         }
 
-        if (collision.CompareTag("hit"))
-        {
+        //if (collision.CompareTag("hit"))
+        //{
 
-            isHitted = true;
-        }
+        //    isHitted = true;
+        //}
     }
 
     private void OnTriggerExit(Collider collision)
@@ -440,13 +454,10 @@ public class CarDrive : MonoBehaviour
                 
             }
         }
-        if (collision.CompareTag("hit"))
-        {
-
-            isHitted = false;
-        }
+        
 
     }
+    
 
     IEnumerator checkIfHitted()
     {
@@ -454,8 +465,9 @@ public class CarDrive : MonoBehaviour
         {
             if (isHitted)
             {
-                alertText = "baba düzgün sür";
+                alertText = "Crashed";
                 Score -= 10;
+                scoreMinus.SetActive(true);
                 speedLimit.SetActive(true);
                 speedLimit.GetComponent<Animation>().Play();
 
@@ -464,6 +476,7 @@ public class CarDrive : MonoBehaviour
 
                 speedLimit.SetActive(false);
                 speedLimit.GetComponent<Animation>().Stop();
+                scoreMinus.SetActive(false);
             }
             yield return null;
         }   
