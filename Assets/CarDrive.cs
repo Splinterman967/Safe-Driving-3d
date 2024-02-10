@@ -20,7 +20,7 @@ public class CarDrive : MonoBehaviour
     public bool speedExeed;
     public bool isCrossed;
     public bool isSpeedLimited;
-    public bool isKarsýSerit;
+    public bool isKarsï¿½Serit;
     public bool isHitted;
 
 
@@ -113,16 +113,16 @@ public class CarDrive : MonoBehaviour
 
 
 
-        //Karsý serite gecýp gecmedýgýný kontrol edýyo
+        //Karsï¿½ serite gecï¿½p gecmedï¿½gï¿½nï¿½ kontrol edï¿½yo
         float carLocationX = gameObject.transform.position.x;
 
         if (carLocationX < 0)
         {
-            isKarsýSerit = true;
+            isKarsï¿½Serit = true;
         }
         else
         {
-            isKarsýSerit = false;
+            isKarsï¿½Serit = false;
         }
 
 
@@ -206,7 +206,7 @@ public class CarDrive : MonoBehaviour
 
         while (true)
         {
-            if (isKarsýSerit)
+            if (isKarsï¿½Serit)
             {
                 
                 speedLimit.SetActive(true);
@@ -219,7 +219,7 @@ public class CarDrive : MonoBehaviour
                 speedLimit.SetActive(false);
                 speedLimit.GetComponent<Animation>().Stop();
 
-                if (isKarsýSerit)
+                if (isKarsï¿½Serit)
                 {
                     Score -= 10;
                     scoreMinus.SetActive(true);
@@ -378,7 +378,7 @@ public class CarDrive : MonoBehaviour
         if (collision.CompareTag("hit"))
         {
             
-            alertText = "baba düzgün sür";
+            alertText = "baba dï¿½zgï¿½n sï¿½r";
             
         }
     }
